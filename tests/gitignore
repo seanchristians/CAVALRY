@@ -1,5 +1,4 @@
 #!/bin/sh
-cd /home/scc/Documents/wad
 
 if [ $(cat .gitignore | grep -c ^$SECRETS) -eq "0" ]
 then
