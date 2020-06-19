@@ -14,11 +14,12 @@ pip3 install cavalry
 
 Run `cav -h` to see options. Note: the script is not POSIX compatible and requires `/bin/bash`.
 
-```sh
-usage: cli.py [-h] [-s FILE] {store,delete,load} ...
+## Loading variables
 
-Utility to load environment variables. To persist the variables into your
-scope, run 'source cav [options]' or '. cav [options]'
+The `load` command will run an eval on the variables exported from the function. To get these into your current scope, the file must be run with `source ...`. Shorthand in most terminals is to simply prepend a dot: `. cav load ...`. **TL/DR**: to load variables, run `. cav load ...`
+
+```sh
+usage: cav [-h] [-s FILE] {store,delete,load} ...
 
 positional arguments:
   {store,delete,load}
