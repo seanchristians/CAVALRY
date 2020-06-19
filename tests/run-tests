@@ -14,9 +14,16 @@ STATUS=0
 
 for TEST in $FILES
 do
-	if [ $1 = "--silence-pass" ]
+	if [ "$1" = "--silence-pass" ] # silence passing
 	then
 		$PROJECT/tests/$TEST 1>/dev/null
+	elif [ "$1" = "--silence-warn" ] # silence pass and warn
+	then
+		WARN=$($PROJECT/tests/$TEST 2>&1 1>/dev/null)
+		if [ "$?" -eq "1" ] || [ "$?" -gt "2" ]
+		then
+			echo $WARN
+		fi
 	else
 		$PROJECT/tests/$TEST
 	fi

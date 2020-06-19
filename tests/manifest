@@ -1,0 +1,12 @@
+#!/bin/sh
+
+MONITOR=$(cat MANIFEST.in | grep "^exclude .*$SECRETS")
+
+if [ -z "$MONITOR" ]
+then
+	echo FAIL: MANIFEST.in: missing or broken $SECRETS >&2
+	exit 1
+else
+	echo PASS: MANIFEST.in
+	exit 0
+fi
