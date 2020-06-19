@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SCRIPT=/home/scc/Documents/wad/wad.py
+
+if [ $# -eq "0" ]
+then
+	python3 -B $SCRIPT -h
+elif [ $1 = "load" ]
+then
+	eval $(python3 -B $SCRIPT $@)
+else
+	python3 -B $SCRIPT $@
+fi

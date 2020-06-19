@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export SECRETS=".secrets.json"
+
+cd $(dirname $(git rev-parse --git-dir))/tests
+FILES=$(find -executable | grep -v $(basename $0))
+
+STATUS=0
+
+for TEST in $FILES
+do
+	$TEST
+	STATUS=$(( $STATUS | $? ))
+done
+
+exit $STATUS

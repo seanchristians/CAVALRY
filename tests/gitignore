@@ -1,0 +1,11 @@
+#!/bin/sh
+cd /home/scc/Documents/wad
+
+if [ $(cat .gitignore | grep -c ^$SECRETS) -eq "0" ]
+then
+	echo FAIL: .gitignore: missing or broken .secrets.json >&2
+	exit 1
+else
+	echo PASS: .gitignore
+	exit 0
+fi
