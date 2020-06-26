@@ -1,17 +1,11 @@
-import setuptools#, subprocess, os
-
-# completedProcess = subprocess.run(f"{os.path.realpath(os.path.dirname(__file__))}/tests/run-tests --silence-pass", shell=True, stderr=subprocess.PIPE)
-#
-# if (completedProcess.stderr):
-# 	print(str(completedProcess.stderr, "utf-8"), end='')
-# 	exit(completedProcess.returncode)
+import setuptools
 
 with open("README.md", 'r') as f:
 	long_description = f.read()
 
 setuptools.setup(
 	name = "cavalry",
-	version = "1.0.0",
+	version = "1.1.0",
 	author = "Sean Christians",
 	author_email = "seanchristians.scc@gmail.com",
 	description = "Secrets manager",

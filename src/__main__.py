@@ -4,13 +4,14 @@ def main():
 
 	path = os.path.dirname(__file__) + "/.secrets.json"
 
-	parser = argparse.ArgumentParser(description="Utility to load environment variables. To persist the variables into your scope, run 'source cav [options]' or '. cav [options]'")
+	parser = argparse.ArgumentParser(description="Utility to load environment variables. To persist the variables into your scope, run 'source cav load [options]' or '. cav load [options]'")
 	parser.add_argument("-s", "--secrets", metavar="FILE", default=path, help="specify an alternate secrets file")# SECRETS should be set to wherever .secrets.json is located.
 
 	subparsers = parser.add_subparsers(dest="action")
 	store = subparsers.add_parser("store", help="store variables")
 	delete = subparsers.add_parser("delete", help="delete variables")
 	load = subparsers.add_parser("load", help="load variables")
+	list = subparsers.add_parser("list", help="list stored data")
 
 	store.add_argument("project", help="project to load")
 	store.add_argument("key", help="variable name")
@@ -20,6 +21,8 @@ def main():
 
 	load.add_argument("project", help="project to load")
 	load.add_argument("-v", "--var", default=None, help="load a specific variable")
+
+	list.add_argument("project", nargs="?", help="project to load")
 
 	args = parser.parse_args()
 
@@ -49,6 +52,14 @@ def main():
 			data.append(f"{k}={json.dumps(v)}")# make sure v is valid as a single value
 
 		print(f"export {' '.join(data)}")
+
+	elif args.action == "list":
+		if args.project:
+			for k, v in secrets[args.project].items():
+				print(f"${k}: {v}")
+		else:
+			for k in secrets.keys():
+				print(k)
 
 	# Save changes
 	with open(args.secrets, 'w') as f:
