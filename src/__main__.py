@@ -4,7 +4,7 @@ def main():
 
 	path = os.path.dirname(__file__) + "/.secrets.json"
 
-	parser = argparse.ArgumentParser(description="Utility to load environment variables. To persist the variables into your scope, run 'source cav load [options]' or '. cav load [options]'")
+	parser = argparse.ArgumentParser(description="Utility to load environment variables. To persist the variables into your scope, run 'source cav {load,clear} [options]' or '. cav {load,clear} [options]'")
 	parser.add_argument("-s", "--secrets", metavar="FILE", default=path, help="specify an alternate secrets file")# SECRETS should be set to wherever .secrets.json is located.
 
 	subparsers = parser.add_subparsers(dest="action")
@@ -12,15 +12,18 @@ def main():
 	delete = subparsers.add_parser("delete", help="delete variables")
 	load = subparsers.add_parser("load", help="load variables")
 	list = subparsers.add_parser("list", help="list stored data")
+	clear = subparsers.add_parser("clear", help="clear variables from environment")
 
 	store.add_argument("project", help="project to load")
 	store.add_argument("key", help="variable name")
 	store.add_argument("value", help="secret data")
 	delete.add_argument("project", help="project to load")
-	delete.add_argument("key", nargs="*", help="variable name")
+	delete.add_argument("key", nargs="*", help="delete specific variables")
 
 	load.add_argument("project", help="project to load")
-	load.add_argument("var", nargs="*", help="load a specific variable")
+	load.add_argument("var", nargs="*", help="load specific variables")
+	clear.add_argument("project", help="project to load")
+	clear.add_argument("var", nargs="*", help="clear specific variables")
 
 	list.add_argument("project", nargs="?", help="project to load")
 
@@ -46,6 +49,10 @@ def main():
 		else:
 			for k in secrets.data.keys():
 				print(k)
+	elif args.action == "clear":
+		vars = secrets.load(args.project, *args.var)
+		comp = [f"{k}=" for k in vars.keys()]
+		print(f"export {' '.join(comp)}")
 
 	secrets.commit()
 
