@@ -1,4 +1,4 @@
-import os, json, argparse
+import argparse, os.path, cavalry
 
 def main():
 
@@ -17,53 +17,37 @@ def main():
 	store.add_argument("key", help="variable name")
 	store.add_argument("value", help="secret data")
 	delete.add_argument("project", help="project to load")
-	delete.add_argument("key", help="variable name")
+	delete.add_argument("key", nargs="*", help="variable name")
 
 	load.add_argument("project", help="project to load")
-	load.add_argument("-v", "--var", default=None, help="load a specific variable")
+	load.add_argument("var", nargs="*", help="load a specific variable")
 
 	list.add_argument("project", nargs="?", help="project to load")
 
 	args = parser.parse_args()
 
-	# Initialize .secrets.json
-	if not os.path.exists(args.secrets):
-		with open(args.secrets, 'w') as f:
-			f.write(json.dumps({}))
-
-	# Load .secrets.json
-	with open(args.secrets, 'r') as f:
-		secrets = json.loads(f.read())
+	secrets = cavalry.Secrets(args.secrets, create=True)
 
 	if args.action == "store":
-		if not args.project in secrets:
-			secrets[args.project] = {args.key: args.value}
-		else:
-			secrets[args.project][args.key] = args.value
-
+		secrets.store(args.project, args.key, args.value)
 	elif args.action == "delete":
-		secrets[args.project].pop(args.key)
-
+		secrets.delete(args.project, *args.key)
 	elif args.action == "load":
-		if args.var:
-			print(f"export {args.var}={secrets[args.project][args.var]}")
-		data = []
-		for k, v in secrets[args.project].items():
-			data.append(f"{k}={json.dumps(v)}")# make sure v is valid as a single value
-
-		print(f"export {' '.join(data)}")
-
+		vars = secrets.load(args.project, *args.var)
+		comp = [f"{k}={v}" for k, v in vars.items()]
+		print(f"export {' '.join(comp)}")
 	elif args.action == "list":
 		if args.project:
-			for k, v in secrets[args.project].items():
-				print(f"${k}: {v}")
+			if not args.project in secrets.data:
+				cavalry.errors.missing_project(args.project)
+
+			for k, v in secrets.data[args.project].items():
+				print(f"${k}={v}")
 		else:
-			for k in secrets.keys():
+			for k in secrets.data.keys():
 				print(k)
 
-	# Save changes
-	with open(args.secrets, 'w') as f:
-		f.write(json.dumps(secrets))
+	secrets.commit()
 
 if __name__ == "__main__":
 	main()
