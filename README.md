@@ -1,6 +1,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-[![License](https://img.shields.io/github/license/seanchristians/cavalry)](https://github.com/seanchristians/CAVALRY/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/seanchristians/cavalry)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![Build status](https://img.shields.io/travis/seanchristians/cavalry)
 
 [![Python version](https://img.shields.io/pypi/pyversions/cavalry?color=red)](https://pypi.org/project/cavalry)
 [![Python wheels](https://img.shields.io/pypi/wheel/cavalry)](https://pypi.org/project/cavalry)
