@@ -1,4 +1,14 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+[![License](https://img.shields.io/github/license/seanchristians/cavalry)](https://github.com/seanchristians/CAVALRY/blob/master/LICENSE)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+[![Python version](https://img.shields.io/pypi/pyversions/cavalry?color=red)](https://pypi.org/project/cavalry)
+[![Python wheels](https://img.shields.io/pypi/wheel/cavalry)](https://pypi.org/project/cavalry)
+[![PyPI version](https://img.shields.io/pypi/v/cavalry?color=purple)](https://pypi.org/project/cavalry)
+
+[![Commit history](https://img.shields.io/github/last-commit/seanchristians/cavalry)](https://github.com/seanchristians/cavalry/commits)
+[![Code size](https://img.shields.io/github/languages/code-size/seanchristians/cavalry)](https://github.com/seanchristians/cavalry)
+[![Top language](https://img.shields.io/github/languages/top/seanchristians/cavalry?color=red)](https://github.com/seanchristians/cavalry)
 
 # CAVALRY
 
@@ -16,7 +26,7 @@ Run `cav -h` to see options. Note: the script is not POSIX compatible and requir
 
 ## Loading variables
 
-The `load` command will run an eval on the variables exported from the function. To get these into your current scope, the file must be run with `source ...`. Shorthand in most terminals is to simply prepend a dot: `. cav load ...`. **TL/DR**: to load variables, run `. cav load ...`
+The `load` command will run an eval on the variables exported from the function. To get these into your current scope, the file must be run with `source ...`. Shorthand in most terminals is to simply prepend a dot: `. cav load ...`. **TL;DR**: to load variables, run `. cav load ...`
 
 ```sh
 usage: cav [-h] [-s FILE] {store,delete,load,list,clear} ...
