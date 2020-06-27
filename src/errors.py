@@ -4,9 +4,9 @@ import sys
 def err(msg, code):
     if code > 0:
         sys.stderr.write(msg + "\n")
+        sys.exit(code)
     else:
         sys.stdout.write(msg + "\n")
-    sys.exit(code)
 
 
 def missing_secrets_file(file):
