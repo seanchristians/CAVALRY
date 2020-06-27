@@ -4,9 +4,9 @@ MONITOR=$(cat setup.py | grep $SECRETS)
 
 if [ -n "$MONITOR" ]
 then
-	echo WARN: setup.py: $MONITOR >&2
-	exit 2
+    echo WARN: setup.py: $MONITOR >&2
+    exit 2
 else
-	echo PASS: setup.py
-	exit 0
+    echo PASS: setup.py
+    exit 0
 fi

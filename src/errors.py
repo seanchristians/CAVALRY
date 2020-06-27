@@ -1,17 +1,21 @@
 import sys
 
+
 def err(msg, code):
-	if code > 0:
-		sys.stderr.write(msg + '\n')
-	else:
-		sys.stdout.write(msg + '\n')
-	sys.exit(code)
+    if code > 0:
+        sys.stderr.write(msg + "\n")
+    else:
+        sys.stdout.write(msg + "\n")
+    sys.exit(code)
+
 
 def missing_secrets_file(file):
-	err(f"Unable to find secrets file at {file}", 1)
+    err(f"Unable to find secrets file at {file}", 1)
+
 
 def missing_project(project):
-	err(f"Project {project} not found", 2)
+    err(f"Project {project} not found", 2)
+
 
 def missing_key(project, key):
-	err(f"Key {key} in {project} not found", 3)
+    err(f"Key {key} in {project} not found", 3)

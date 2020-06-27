@@ -4,9 +4,9 @@ MONITOR=$(git diff --name-only --staged | grep $SECRETS)
 
 if [ -n "$MONITOR" ]
 then
-	echo FAIL: staged: $MONITOR >&2
-	exit 1
+    echo FAIL: staged: $MONITOR >&2
+    exit 1
 else
-	echo PASS: staged
-	exit 0
+    echo PASS: staged
+    exit 0
 fi
