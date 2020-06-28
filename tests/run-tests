@@ -24,6 +24,9 @@ do
         then
             echo $WARN
         fi
+    elif [ ${TEST##*.} = "py" ]
+    then
+        python3 -B $PROJECT/tests/$TEST
     else
         $PROJECT/tests/$TEST
     fi

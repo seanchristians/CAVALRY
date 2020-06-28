@@ -1,4 +1,3 @@
-#!/usr/bin/python3 -B
 import unittest, os, json, sys
 import cavalry
 
