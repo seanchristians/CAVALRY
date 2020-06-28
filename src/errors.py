@@ -6,7 +6,7 @@ def err(msg, code):
         sys.stderr.write(msg + "\n")
         sys.exit(code)
     else:
-        sys.stdout.write(msg + "\n")
+        sys.stderr.write(msg + "\n")
 
 
 def missing_secrets_file(file):
