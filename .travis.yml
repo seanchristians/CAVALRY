@@ -1,5 +1,8 @@
+dist: xenial
 language: python
 python: "3.8"
-script:
-    - make build install
-    - sh tests/run-tests
+before_install:
+    - pip install -U pip
+    - make build
+install: pip install dist/*
+script: sh tests/run-tests
