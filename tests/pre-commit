@@ -1,0 +1,16 @@
+#!/bin/sh
+
+file=.git/hooks/pre-commit
+
+if [ ! -x $file ]
+then
+    echo WARN: missing pre-commit >&2
+    exit 0
+elif [ $(cat $file | grep -c run-tests) -eq 0 ]
+then
+    echo WARN: pre-commit not running tests properly >&2
+    exit 0
+else
+    echo PASS: pre-commit
+    exit 0
+fi
