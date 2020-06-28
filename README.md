@@ -1,7 +1,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![License](https://img.shields.io/github/license/seanchristians/cavalry)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-![Build status](https://img.shields.io/travis/seanchristians/cavalry)
+[![Build Status](https://travis-ci.org/seanchristians/CAVALRY.svg?branch=master)](https://travis-ci.org/seanchristians/CAVALRY)
 [![Commit history](https://img.shields.io/github/last-commit/seanchristians/cavalry)](https://github.com/seanchristians/cavalry/commits)
 
 [![Python wheels](https://img.shields.io/pypi/wheel/cavalry)](https://pypi.org/project/cavalry)
@@ -51,6 +51,10 @@ optional arguments:
                         specify an alternate secrets file
 ```
 
----
+# Contributing
+
+If you would like to contribute to the project, please go check out [Contributing](CONTRIBUTING.md). Issue templates are available.
+
+* * *
 
 © 2020 Sean Christians

@@ -22,11 +22,11 @@ clean:
 
 install: dist/$(wildcard *.[whl|tar.gz])
 	@echo "Installing"
-	@pip3 install --force-reinstall dist/* >/dev/null
+	@pip install --force-reinstall dist/* >/dev/null
 
 uninstall:
 	@echo "Uninstalling"
-	@pip3 uninstall -y cavalry >/dev/null
+	@pip uninstall -y cavalry >/dev/null
 
 %.whl %.tar.gz: setup.py
 	@echo "Building $@"
