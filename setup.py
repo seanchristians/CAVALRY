@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="cavalry",
-    version="2.1.1",
+    version="2.2.0",
     author="Sean Christians",
     author_email="seanchristians.scc@gmail.com",
     description="Secrets manager",
@@ -22,4 +22,5 @@ setuptools.setup(
     ],
     scripts=["src/cav"],
     python_requires=">=3.8",
+    license="GNU AGPLv3"
 )
