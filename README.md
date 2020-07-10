@@ -25,36 +25,14 @@ pip3 install cavalry
 
 Run `cav -h` to see options. Note: the script is not POSIX compatible and requires `/bin/bash`.
 
-## Loading variables
+## Loading Variables
 
-The `load` command will run an eval on the variables exported from the function. To get these into your current scope, the file must be run with `source ...`. Shorthand in most terminals is to simply prepend a dot: `. cav load ...`. **TL;DR**: to load variables, run `. cav load ...`
-
-## Script
-
-```sh
-usage: cav [-h] [-s FILE] {store,delete,load,list,clear} ...
-
-Utility to load environment variables. To persist the variables into your
-scope, run 'source cav {load,clear} [options]' or '. cav {load,clear} [options]'
-
-positional arguments:
-  {store,delete,load,list,clear}
-    store               store variables
-    delete              delete variables
-    load                load variables
-    list                list stored data
-    clear               clear variables from environment
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -s FILE, --secrets FILE
-                        specify an alternate secrets file
-```
+Changing environment variables in the current scope from a file must be done through your shell's `source` function. Therefore, you have to run `source cav load` instead of just `cav load`.
 
 # Contributing
 
 If you would like to contribute to the project, please go check out [Contributing](CONTRIBUTING.md). Issue templates are available.
 
-* * *
+---
 
 © 2020 Sean Christians
