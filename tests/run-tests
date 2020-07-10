@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export SECRETS=".secrets.json"
 
@@ -12,23 +12,29 @@ FILES=$(find -executable -not -path "\." | grep -v $(basename $0))
 cd $PROJECT
 STATUS=0
 
-for TEST in $FILES
-do
-    if [ "$1" = "--silence-pass" ] # silence passing
-    then
-        $PROJECT/tests/$TEST 1>/dev/null
-    elif [ "$1" = "--silence-warn" ] # silence pass and warn
-    then
-        WARN=$($PROJECT/tests/$TEST 2>&1 1>/dev/null)
-        if [ $? -gt 0 ]
-        then
-            echo $WARN
-        fi
-    elif [ ${TEST##*.} = "py" ]
+run_test () {
+    if [ ${TEST##*.} = "py" ]
     then
         python3 -B $PROJECT/tests/$TEST
     else
         $PROJECT/tests/$TEST
+    fi
+}
+
+for TEST in $FILES
+do
+    if [ "$1" = "--silence-pass" ] # silence passing
+    then
+        run_test $TEST 1>/dev/null
+    elif [ "$1" = "--silence-warn" ] # silence pass and warn
+    then
+        WARN=$(run_test $TEST 2>&1 1>/dev/null)
+        if [ $? -gt 0 ]
+        then
+            echo $WARN
+        fi
+    else
+        run_test $TEST
     fi
 
     STATUS=$(( $STATUS | $? )) # OR current status with return code

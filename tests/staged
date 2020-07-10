@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MONITOR=$(git diff --name-only --staged | grep $SECRETS)
 
