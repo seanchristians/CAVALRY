@@ -12,7 +12,7 @@ This software runs on standard Unix-like systems: Debian, Ubuntu, MacOS, etc. I 
 
 # Development Requirements
 
--   Bourne Shell
+-   [GNU Bash](https://www.gnu.org/software/bash/)
 -   [GNU Make](https://www.gnu.org/software/make/)
 -   [Python 3.8](https://www.python.org/downloads/release/python-380/)
 -   [Python setuptools](https://pypi.org/project/setuptools/). Depending on your environment, this may already be included in your standard library
