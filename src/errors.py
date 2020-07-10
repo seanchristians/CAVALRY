@@ -19,3 +19,9 @@ def missing_project(project):
 
 def missing_key(project, key):
     err(f"Key {key} in {project} not found", 3)
+
+def incomplete_attribute(key, value):
+    err(f"Incomplete attribute \"{key}\":\"{value}\"", 4)
+
+def invalid_project_name(project):
+    error(f"Invalid project name \"{project}\"", 5)
